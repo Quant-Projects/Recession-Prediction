@@ -13,3 +13,9 @@ def get_yield():
 		
 	return last_col[0].text, float(last_col[1].text), float(last_col[3].text), float(last_col[4].text), float(last_col[5].text), float(last_col[7].text), float(last_col[8].text), float(last_col[10].text)
 	
+def get_vix():
+	url = "https://finance.yahoo.com/quote/%5EVIX?p=%5EVIX"
+	data = requests.get(url).text
+	soup = BeautifulSoup(data, 'html5lib')
+	
+	return float(soup.find_all("span")[11].text)
